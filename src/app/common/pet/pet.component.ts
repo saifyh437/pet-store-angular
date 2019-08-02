@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PetService } from '../_services';
+import { PetService } from '../_services/pet.service';
 
 @Component({
   selector: 'app-pet',

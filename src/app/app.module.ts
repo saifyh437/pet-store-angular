@@ -7,8 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './common/login/login.component';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthenticationService } from './common/_services';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationService } from './common/_services/authentication.service';
 import { HomeComponent } from './common/home/home.component';
 import { PersonComponent } from './common/person/person.component';
 import { PetComponent } from './common/pet/pet.component';

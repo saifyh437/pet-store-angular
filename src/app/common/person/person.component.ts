@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {  PersonService } from '../_services';
+import {  PersonService } from '../_services/person.service';
 
 @Component({
   selector: 'app-person',
