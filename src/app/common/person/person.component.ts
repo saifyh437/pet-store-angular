@@ -44,26 +44,17 @@ export class PersonComponent implements OnInit {
         .subscribe(
             res => {
               console.log(res);
-                if(res["status"])
-                {
-                  this.showErrMsg =true;
-                  this.errMsg = res["errors"];
-                  this.loading = false;
-                  return ;
-                }
-                else {
+                
                   this.showErrMsg = false;
                   this.loading = false;
                   this.successMsg = "Person is been Created";
                   this.addPersonF.reset();
                   return ;
-                }
+                
             },
             error => {
               this.showErrMsg =true;
               this.loading = false;
-              console.log(error);
-              console.log(error.error.errors[0]);
               this.errMsg= error.error.errors[0];
               return ;
             });

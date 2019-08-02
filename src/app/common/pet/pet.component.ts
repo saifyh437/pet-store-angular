@@ -43,27 +43,20 @@ export class PetComponent implements OnInit {
         .subscribe(
             res => {
               console.log(res);
-                if(res["status"])
-                {
-                  this.showErrMsg =true;
-                  this.errMsg = res["errors"];
-                  this.loading = false;
-                  return ;
-                }
-                else {
+               
+               
                   this.showErrMsg = false;
                   this.loading = false;
                   this.successMsg = "Pet is been Created";
                   this.addPetF.reset();
                   return ;
-                }
+                
             },
             error => {
               this.showErrMsg =true;
               this.loading = false;
-              console.log(error);
-              console.log(error.error.errors);
               this.errMsg= error.error.errors;
+              ;
               return ;
             });
 }

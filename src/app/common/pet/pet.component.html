@@ -17,7 +17,8 @@
               <div  style="color:red;" *ngIf="showErrMsg; else elseBlock" ><h5>{{errMsg}}</h5></div>
               <ng-template #elseBlock >
                 <span style="color:cadetblue; font-size: 25px;">{{successMsg}}
-              </span></ng-template>
+                </span>
+              </ng-template>
             <div class="form-group">
                 <label for="petName">Pet Name</label>
                 <input type="text" formControlName="petName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.petName.errors }" />
