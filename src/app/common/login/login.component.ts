@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
     showErrMsg = false;
+  
 
     constructor(
         private formBuilder: FormBuilder,
@@ -56,7 +57,9 @@ export class LoginComponent implements OnInit {
                    }
                 },
                 error => {
-                  console.log(error) 
+                    if (error.status == 0) {
+                        this.router.navigate(['connection-refused']);
+                      }
                 });
     }
 }

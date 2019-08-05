@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  PersonService } from '../_services/person.service';
 import { Person } from '../person';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-personlist',
@@ -10,8 +11,10 @@ import { Person } from '../person';
 export class PersonlistComponent implements OnInit {
 
   persons : Person[];
+  errMsg ='';
 
-  constructor(private personService: PersonService) { }
+  constructor(private personService: PersonService ,
+              private router : Router) { }
 
   ngOnInit() {
     this.getPersons();
@@ -21,7 +24,9 @@ export class PersonlistComponent implements OnInit {
     this.personService.getAllPersons()
         .subscribe((personData) => this.persons = personData,
         (error) =>{
-            console.log(error);
+          if (error.status == 0) {
+            this.router.navigate(['connection-refused']);
+          }
             return;
         }
     );

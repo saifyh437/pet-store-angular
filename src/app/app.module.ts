@@ -16,6 +16,9 @@ import { PetService } from './common/_services/pet.service';
 import { PersonService } from './common/_services/person.service';
 import { PersonlistComponent } from './common/personlist/personlist.component';
 import { PetlistComponent } from './common/petlist/petlist.component';
+import { ConnectionRefusedComponent } from './connection-refused/connection-refused.component';
+import { NotValidComponent } from './not-valid/not-valid.component';
+import { AuthGuardService } from './common/_services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { PetlistComponent } from './common/petlist/petlist.component';
     PersonComponent,
     PetComponent,
     PersonlistComponent,
-    PetlistComponent
+    PetlistComponent,
+    ConnectionRefusedComponent,
+    NotValidComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,8 @@ import { PetlistComponent } from './common/petlist/petlist.component';
   providers: [
     AuthenticationService ,
     PetService,
-    PersonService],
+    PersonService,
+    AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

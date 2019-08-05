@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PetService } from '../_services/pet.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pet',
@@ -18,7 +19,8 @@ export class PetComponent implements OnInit {
 
   constructor(
       private formBuilder: FormBuilder,
-      private petService: PetService) {}
+      private petService: PetService,
+      private router : Router) {}
 
   ngOnInit() {
       this.addPetF = this.formBuilder.group({
@@ -55,7 +57,12 @@ export class PetComponent implements OnInit {
             error => {
               this.showErrMsg =true;
               this.loading = false;
-              this.errMsg= error.error.errors;
+              if (error.status == 0) {
+                this.router.navigate(['connection-refused']);
+              } else {
+                this.errMsg= error.error.errors;
+              }
+              
               ;
               return ;
             });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {  PetService } from '../_services/pet.service';
+import { PetService } from '../_services/pet.service';
 import { Pet } from '../pet';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-petlist',
@@ -9,23 +10,26 @@ import { Pet } from '../pet';
 })
 export class PetlistComponent implements OnInit {
 
-  pets : Pet[];
+  pets: Pet[];
 
-  constructor(private petService: PetService) { }
+  constructor(private petService: PetService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getPets();
   }
 
-  getPets(): void{
+  getPets(): void {
     this.petService.getAllPets()
-        .subscribe((petData) => this.pets = petData,
-        (error) =>{
-            console.log(error);
-            return;
+      .subscribe((petData) => this.pets = petData,
+        (error) => {
+          if (error.status == 0) {
+            this.router.navigate(['connection-refused']);
+          }
+          return;
         }
-    );
-    
-}
+      );
+
+  }
 }
 
