@@ -10,60 +10,32 @@ export class HomeComponent implements OnInit {
   isLogin = false;
 
   constructor(private service: AuthenticationService,
-    private router : Router) {
+    private router: Router) {
     this.isLogin = service.isLogin;
   }
 
   ngOnInit() {
   }
 
-  onLogin()
-  {
+  onLogin() {
     this.router.navigate(['login']);
   }
 
-  onPerson()
-  {
-    if(!this.isLogin)
-    {
+  onPerson() {
+    if (!this.isLogin) {
       alert("Please Login First");
     }
-    else{
+    else {
       this.router.navigate(['person']);
     }
   }
 
-  onPet()
-  {
-    if(!this.isLogin)
-    {
+  onPet() {
+    if (!this.isLogin) {
       alert("Please Login First");
     }
-    else{
+    else {
       this.router.navigate(['pet']);
     }
   }
-
-  onPersonList()
-  {
-    if(!this.isLogin)
-    {
-      alert("Please Login First");
-    }
-    else{
-      this.router.navigate(['personlist']);
-    }
-  }
-
-  onPetList()
-  {
-    if(!this.isLogin)
-    {
-      alert("Please Login First");
-    }
-    else{
-      this.router.navigate(['petlist']);
-    }
-  }
-
 }

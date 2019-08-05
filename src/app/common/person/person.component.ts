@@ -1,69 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PersonService } from '../_services/person.service';
+import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-person',
   templateUrl: './person.component.html',
   styleUrls: ['./person.component.css']
 })
-export class PersonComponent implements OnInit {
+export class PersonComponent {
 
-  addPersonF: FormGroup;
-  loading = false;
-  submitted = false;
-  showErrMsg = false;
-  errMsg: string;
-  successMsg: string;
+  constructor(private route:ActivatedRoute,private router:Router) { }
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private personService: PersonService,
-    private router : Router) { }
-
-  ngOnInit() {
-    this.addPersonF = this.formBuilder.group({
-      personName: ['', Validators.required],
-      personAge: ['']
-    });
+  addPerson() {
+    this.router.navigate(['add'], {relativeTo: this.route});
   }
 
-  get f() { return this.addPersonF.controls; }
-
-  onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.addPersonF.invalid) {
-      return;
-    }
-
-    this.loading = true;
-
-    this.personService.addPerson(this.f.personName.value, this.f.personAge.value)
-      .subscribe(
-        res => {
-          console.log(res);
-
-          this.showErrMsg = false;
-          this.loading = false;
-          this.successMsg = "Person is been Created";
-          this.addPersonF.reset();
-          return;
-
-        },
-        error => {
-          this.showErrMsg = true;
-          this.loading = false;
-          console.log(error);
-          if (error.status == 0) {
-            this.router.navigate(['connection-refused']);
-          } else {
-            this.errMsg = error.error.errors[0];
-          }
-          return;
-        });
+  getPersonList() {
+    this.router.navigate(['list'], {relativeTo: this.route});
   }
-
 }

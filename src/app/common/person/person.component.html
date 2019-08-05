@@ -1,48 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a style="color:red;font-size: 40px;" class="navbar-brand" href="#">PetStore</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="nav-link" style="color: #007bff" routerLink="/home">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" style="color: #007bff" routerLink="/login">Logout <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  </div>
+    <a style="color:red;font-size: 40px;" class="navbar-brand" href="#">PetStore</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" style="color: #007bff" routerLink="/home">Home <span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" style="color: #007bff" routerLink="/login">Logout <span
+                        class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
 </nav>
+<div style="padding-top: 5%;text-align: center;" class="container">
+    <div class="row">
+        <div class="col-sm">
+            <button style="color: #007bff" (click)="addPerson()">Add Person</button>
+        </div>
 
-<div class="container">
-  <div *ngIf="!submitted" style="text-align: center;color: brown;font-family: sans-serif">Please insert Person Details
-  </div>
-  <form [formGroup]="addPersonF" (ngSubmit)="onSubmit()">
-    <div style="color:red;" *ngIf="showErrMsg; else elseBlock">
-      <h5>{{errMsg}}</h5>
-    </div>
-    <ng-template #elseBlock>
-      <span style="color:cadetblue; font-size: 25px;">{{successMsg}}
-      </span></ng-template>
-    <div class="form-group">
-      <label for="personName">Person Name</label>
-      <input type="text" formControlName="personName" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.personName.errors }" />
-      <div *ngIf="submitted && f.personName.errors" class="invalid-feedback">
-        <div *ngIf="f.personName.errors.required">Person Name is required</div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="personAge">Person Age</label>
-      <input type="number" formControlName="personAge" class="form-control" />
-    </div>
-    <div class="form-group">
-      <button [disabled]="loading" class="btn btn-primary">Add</button>
-      <img *ngIf="loading"
-        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-    </div>
+        <div class="col-sm">
+            <button style="color: #007bff" (click)="getPersonList()">Get Persons</button>
+        </div>
 
-  </form>
+    </div>
 </div>
+<router-outlet></router-outlet>

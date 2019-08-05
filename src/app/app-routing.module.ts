@@ -9,16 +9,22 @@ import { PersonlistComponent } from './common/personlist/personlist.component';
 import { ConnectionRefusedComponent } from './connection-refused/connection-refused.component';
 import { NotValidComponent } from './not-valid/not-valid.component';
 import { AuthGuardService } from './common/_services/auth-guard.service';
+import { AddPersonComponent } from './common/add-person/add-person.component';
+import { AddPetComponent } from './common/add-pet/add-pet.component';
 
 
 const routes : Routes = [
   { path:'',redirectTo:'/home',pathMatch:'full'},
   { path:'login',component: LoginComponent},
   { path:'home',component: HomeComponent},
-  { path:'person',canActivate : [AuthGuardService],component :PersonComponent},
-  { path:'personlist',canActivate : [AuthGuardService],component :PersonlistComponent},
-  { path:'pet' ,canActivate : [AuthGuardService],component:PetComponent},
-  { path:'petlist' ,canActivate : [AuthGuardService],component:PetlistComponent},
+  { path:'person', canActivate : [AuthGuardService], component :PersonComponent , children :[
+    { path: 'add', component: AddPersonComponent},
+    { path: 'list',component :PersonlistComponent}
+  ]},
+  { path:'pet' , canActivate : [AuthGuardService], component :PetComponent , children : [
+    { path: 'add',  component: AddPetComponent},
+    { path: 'list' ,component:PetlistComponent}
+  ]},
   { path:'connection-refused' ,component : ConnectionRefusedComponent},
   { path:'**' ,component: NotValidComponent}
 ]

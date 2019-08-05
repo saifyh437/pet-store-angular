@@ -19,6 +19,8 @@ import { PetlistComponent } from './common/petlist/petlist.component';
 import { ConnectionRefusedComponent } from './connection-refused/connection-refused.component';
 import { NotValidComponent } from './not-valid/not-valid.component';
 import { AuthGuardService } from './common/_services/auth-guard.service';
+import { AddPersonComponent } from './common/add-person/add-person.component';
+import { AddPetComponent } from './common/add-pet/add-pet.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { AuthGuardService } from './common/_services/auth-guard.service';
     PersonlistComponent,
     PetlistComponent,
     ConnectionRefusedComponent,
-    NotValidComponent
+    NotValidComponent,
+    AddPersonComponent,
+    AddPetComponent
   ],
   imports: [
     BrowserModule,
