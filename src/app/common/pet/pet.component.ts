@@ -17,5 +17,9 @@ export class PetComponent {
   getPetList() {
     this.router.navigate(['list'], {relativeTo: this.route});
   }
+
+  getPetByName(){
+    this.router.navigate(['search'], {relativeTo: this.route});
+  }
 }
 

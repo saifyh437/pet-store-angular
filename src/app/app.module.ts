@@ -22,6 +22,7 @@ import { AuthGuardService } from './common/_services/auth-guard.service';
 import { AddPersonComponent } from './common/add-person/add-person.component';
 import { AddPetComponent } from './common/add-pet/add-pet.component';
 import { PersonSearchComponent } from './common/person-search/person-search.component';
+import { PetSearchComponent } from './common/pet-search/pet-search.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PersonSearchComponent } from './common/person-search/person-search.comp
     NotValidComponent,
     AddPersonComponent,
     AddPetComponent,
-    PersonSearchComponent
+    PersonSearchComponent,
+    PetSearchComponent
   ],
   imports: [
     BrowserModule,
