@@ -18,4 +18,8 @@ export class PersonComponent {
   getPersonList() {
     this.router.navigate(['list'], {relativeTo: this.route});
   }
+
+  getPersonByName(){
+    this.router.navigate(['search'], {relativeTo: this.route});
+  }
 }
