@@ -14,19 +14,19 @@ export class AddPetComponent implements OnInit {
   loading = false;
   submitted = false;
   showErrMsg = false;
-  errMsg : string;
-  successMsg : string;
+  errMsg: string;
+  successMsg: string;
 
   constructor(
-      private formBuilder: FormBuilder,
-      private petService: PetService,
-      private router : Router) {}
+    private formBuilder: FormBuilder,
+    private petService: PetService,
+    private router: Router) { }
 
   ngOnInit() {
-      this.addPetF = this.formBuilder.group({
-          petName: ['', Validators.required],
-          petColor: ['']
-      });
+    this.addPetF = this.formBuilder.group({
+      petName: ['', Validators.required],
+      petColor: ['']
+    });
   }
 
   get f() { return this.addPetF.controls; }
@@ -36,36 +36,28 @@ export class AddPetComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.addPetF.invalid) {
-        return;
+      return;
     }
 
     this.loading = true;
 
     this.petService.addPet(this.f.petName.value, this.f.petColor.value)
-        .subscribe(
-            res => {
-              console.log(res);
-               
-               
-                  this.showErrMsg = false;
-                  this.loading = false;
-                  this.successMsg = "Pet is been Created";
-                  this.addPetF.reset();
-                  return ;
-                
-            },
-            error => {
-              this.showErrMsg =true;
-              this.loading = false;
-              if (error.status == 0) {
-                this.router.navigate(['connection-refused']);
-              } else {
-                this.errMsg= error.error.errors;
-              }
-              
-              ;
-              return ;
-            });
-}
+      .subscribe(
+        res => {
+          this.showErrMsg = false;
+          this.loading = false;
+          this.successMsg = "Pet is been Created";
+          this.addPetF.reset();
+        },
+        error => {
+          this.showErrMsg = true;
+          this.loading = false;
+          if (error.status == 0) {
+            this.router.navigate(['connection-refused']);
+          } else {
+            this.errMsg = error.error.errors;
+          }
+        });
+  }
 
 }

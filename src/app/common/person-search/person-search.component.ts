@@ -14,7 +14,7 @@ export class PersonSearchComponent implements OnInit {
   sPersonF: FormGroup;
   loading = false;
   submitted = false;
-  persons : Person[];
+  persons: Person[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,6 +44,7 @@ export class PersonSearchComponent implements OnInit {
         persons => {
           this.persons = persons;
           this.loading = false;
+          return this.persons;
         },
         error => {
           this.loading = false;

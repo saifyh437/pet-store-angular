@@ -1,45 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponent } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { LoginComponent } from './common/login/login.component';
-
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationService } from './common/_services/authentication.service';
-import { HomeComponent } from './common/home/home.component';
-import { PersonComponent } from './common/person/person.component';
-import { PetComponent } from './common/pet/pet.component';
 import { PetService } from './common/_services/pet.service';
 import { PersonService } from './common/_services/person.service';
-import { PersonlistComponent } from './common/personlist/personlist.component';
-import { PetlistComponent } from './common/petlist/petlist.component';
-import { ConnectionRefusedComponent } from './connection-refused/connection-refused.component';
-import { NotValidComponent } from './not-valid/not-valid.component';
 import { AuthGuardService } from './common/_services/auth-guard.service';
-import { AddPersonComponent } from './common/add-person/add-person.component';
-import { AddPetComponent } from './common/add-pet/add-pet.component';
-import { PersonSearchComponent } from './common/person-search/person-search.component';
-import { PetSearchComponent } from './common/pet-search/pet-search.component';
+import { AuthInterceptorService } from './common/_services/auth.interceptor.service';
+import { LoggingInterceptorService } from './common/_services/logging.interceptor.service';
+import { AlertComponent } from './common/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    HomeComponent,
-    PersonComponent,
-    PetComponent,
-    PersonlistComponent,
-    PetlistComponent,
-    ConnectionRefusedComponent,
-    NotValidComponent,
-    AddPersonComponent,
-    AddPetComponent,
-    PersonSearchComponent,
-    PetSearchComponent
-  ],
+    routingComponent,
+    AlertComponent
+  ],  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -48,10 +26,22 @@ import { PetSearchComponent } from './common/pet-search/pet-search.component';
     HttpClientModule
   ],
   providers: [
-    AuthenticationService ,
+    AuthenticationService,
     PetService,
     PersonService,
-    AuthGuardService],
+    AuthGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggingInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

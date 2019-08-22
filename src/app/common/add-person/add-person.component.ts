@@ -44,19 +44,14 @@ export class AddPersonComponent implements OnInit {
     this.personService.addPerson(this.f.personName.value, this.f.personAge.value)
       .subscribe(
         res => {
-          console.log(res);
-
           this.showErrMsg = false;
           this.loading = false;
           this.successMsg = "Person is been Created";
           this.addPersonF.reset();
-          return;
-
         },
         error => {
           this.showErrMsg = true;
           this.loading = false;
-          console.log(error);
           if (error.status == 0) {
             this.router.navigate(['connection-refused']);
           } else {
